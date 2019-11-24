@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * @author efrai
  */
 
-public class EnemySkylab extends Enemy{
+public class EnemySkylab extends Enemy {
 
   public EnemySkylab() throws IOException {
     speed = 2;
@@ -36,6 +36,8 @@ public class EnemySkylab extends Enemy{
     firingDeley = 200;
   }
 
+  
+  
   @Override
   public boolean isDead() {
     return dead;
@@ -51,8 +53,14 @@ public class EnemySkylab extends Enemy{
   
   @Override
   public void update() throws IOException {
-    x += dx;
-    y += dy;
+    if(slow) {
+      x += dx * 0.0;
+      y += dy * 0.0;
+    }
+    else {
+      x += dx;
+      y += dy;
+    }
     
     if(!ready) {
       if(x > r && x < GamePanel.width - r &&
@@ -65,9 +73,9 @@ public class EnemySkylab extends Enemy{
     if(x < r && dx < 0) dx = -dx;
     if(y < r && dy < 0) dy = -dy;
     if(x > GamePanel.width - r && dx > 0) dx = -dx;
-    if(y > GamePanel.height - r && dy > 0) dy = -dy;
+    if(y > GamePanel.height+100 - r && dy > 0) { dead = true; y+=200; scoreDead = 0;}
     
-    if(firing) {
+    if(firing && !slow) {
       long elapsed = (System.nanoTime() - firingTimer) / 1000000;
       if(elapsed > firingDeley) {
         DisparoEnemy bala = new DisparoEnemy(270, x, y);

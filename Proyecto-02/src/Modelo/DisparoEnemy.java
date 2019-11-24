@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
  */
 
 public class DisparoEnemy extends Disparo {
+  private boolean slow;
+  
   public DisparoEnemy(double angle, double x, double y) throws IOException {
     this.x = x;
     this.y = y;
@@ -28,12 +30,23 @@ public class DisparoEnemy extends Disparo {
     
     disparo = ImageIO.read(new File("src/Imagenes/Disparo/disparoEnemigo.png"));
   }
+
+  public void setSlow(boolean slow) {
+    this.slow = slow;
+  }
+  
   
   @Override
   public boolean update() {
-    x += -dx;
-    y += -dy;
-    
+    if(slow) {
+      x += dx * 0.0;
+      y += dy * 0.0;
+    }
+    else {
+      x += -dx;
+      y += -dy;
+    }
+ 
     if(x < -r || x > GamePanel.width + r || y < -r || y > GamePanel.height + r) {
       return true;
     }

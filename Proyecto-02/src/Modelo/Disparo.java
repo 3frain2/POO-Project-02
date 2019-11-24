@@ -29,4 +29,5 @@ public abstract class Disparo {
   
   public abstract boolean update();
   public abstract void draw(Graphics2D g);
+  
 }

@@ -7,7 +7,6 @@ package Modelo;
 
 import Controlador.GamePanel;
 import java.awt.Graphics2D;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,9 +26,10 @@ public class SpecialSkills {
   
   //Poderes:
   /*
-  1. +1 Vida
+  1. +1 Drone
   2. +1 Damage
-  3. +1 Drone
+  3. +1 Vida
+  4. +1 Shield
   */
   
   public SpecialSkills(int type, int x, int y) throws IOException {
@@ -46,6 +46,12 @@ public class SpecialSkills {
     }
     if(type == 3) {
       this.skillImagen = ImageIO.read(new File("src/Imagenes/Herramientas/skillHpUp.png"));
+    }
+    if(type == 4) {
+      this.skillImagen = ImageIO.read(new File("src/Imagenes/Herramientas/skillShield.png"));
+    }
+    if(type == 5) {
+      this.skillImagen = ImageIO.read(new File("src/Imagenes/Herramientas/skillShield.png"));
     }
   }
 
